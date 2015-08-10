@@ -1,11 +1,11 @@
 {
-  "name"          : "Evernote Duplicated - EVERDU",
-  "description"   : "Chrome extension that checks whether you have this url in your notes or not",
-  "version"       : "1.0.5",
+  "name"          : "Evernote - Already there ?",
+  "description"   : "Shows an icon on your address bar if page already has notes on Evernote",
+  "version"       : "2.0.0",
   "default_locale": "en",
-  "browser_action": {
+  "page_action": {
     "default_icon" : "images/Evernote-off.png",
-    "default_title": "EVERDU - EVERnote DUplicated"
+    "default_title": "Evernote - Already there ?"
   },
   "background"    : {
     "page": "views/background.html"
@@ -14,7 +14,6 @@
     "tabs", "cookies", "notifications", "webNavigation", "storage",
     "http://*/*", "https://*/*"
   ],
-  "options_page": "views/options.html",
   "icons": {
     "16" : "images/Evernote-on.png",
     "48" : "images/Evernote-on.png",
@@ -24,9 +23,10 @@
   "manifest_version": 2,
   "content_scripts": [
     {
-      "matches" : ["http://www.evernote.com/*"],
+      "matches" : ["http://*/*", "https://*/*"],
       "css"     : [],
       "js"      : [
+        "content_script.js",
         "javascript/oauth/chrome_ex_oauth.js",
         "javascript/oauth/chrome_ex_oauthsimple.js",
         "javascript/oauth/onload.js"

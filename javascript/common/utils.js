@@ -10,7 +10,7 @@ function clearStorage() {
  * Method sets icon that tells user is he logged in or not.
  */
 function setIcon() {
-  chrome.browserAction.setIcon({path:"../images/icon_19_grey.png"});
+  //chrome.browserAction.setIcon({path:"../images/icon_19_grey.png"});
 }
 
 String.prototype.format = function() {

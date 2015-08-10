@@ -12,6 +12,8 @@ jQuery(function ($) {
     shard_param          : 'edam_shard',
     api_url_prefix       : 'edam_webApiUrlPrefix'
   };
+
+  // Keeping consumer key and secret from original project
   Eventnote.Auth.oauth = ChromeExOAuth.initBackgroundPage({
     'request_url'     : 'https://www.evernote.com/oauth',
     'authorize_url'   : 'https://www.evernote.com/OAuth.action',
@@ -19,61 +21,12 @@ jQuery(function ($) {
     'consumer_key'    : 'bit_jammer-9517',
     'consumer_secret' : '802513e24e7928b4',
     'scope'           : '',
-    'app_name'        : 'Everdu Chrome Extension',
+    'app_name'        : 'Evernote - Already there Chrome Extension',
     'callback_page'   : 'views/chrome_ex_oauth.html'
   });
 
   Eventnote.Data   = {};
-  Eventnote.Logger = {};
 
-  Eventnote.Logger.castor = new loggly({
-    url:'http://logs.loggly.com/inputs/198b2723-7111-4ec1-9bd8-9651759b3517',
-    level:'log'
-  });
-
-  Eventnote.Logger.info = function (message) {
-    Eventnote.Logger.castor.info(message);
-  };
-
-  Eventnote.Logger.error = function (err, errMessage) {
-    var message;
-    var errorType;
-    var error;
-    if (err instanceof EDAMUserException) {
-      errorType = err.errorCode;
-      for (error in EDAMErrorCode) {
-        if (EDAMErrorCode[error] == errorType) {
-          errorType = error;
-          break;
-        }
-
-      }
-      message = "Error type: {" + errorType + "}\n Parameter: {" + err.parameter + "}"
-    } else if (err instanceof EDAMSystemException) {
-      errorType = err.errorCode;
-      for (error in EDAMErrorCode) {
-        if (EDAMErrorCode[error] == errorType) {
-          errorType = error;
-          break;
-        }
-
-      }
-      message = "Error type: {" + errorType + "}\n Message: {" + err.message + "}"
-    } else if (err instanceof EDAMNotFoundException) {
-      message = "Error id: {" + err.identifier + "}\n Message: {" + err.key + "}"
-    } else {
-      if (err.description) {
-        message = err.description;
-      }
-      else {
-        message = err;
-      }
-    }
-    if (errMessage) {
-      message = message + "\n" + errMessage;
-    }
-    Eventnote.Logger.castor.error(message);
-  };
 
   Eventnote.Auth.authenticate = function (callback) {
     try {
@@ -87,7 +40,7 @@ jQuery(function ($) {
         }
       });
     } catch(e) {
-      Eventnote.Logger.error(e);
+    //  Eventnote.Logger.error(e);
       if (callback !== undefined) {
         callback();
       }
