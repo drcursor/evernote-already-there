@@ -1,9 +1,12 @@
 // CHROME TABS EVENTS
 // -----------------------------------------------------------------------------
 function onUpdated(workmode, changeInfo, tab) {
-  if (workmode && workmode !== undefined && workmode === 'all') {
+  if (workmode && workmode !== undefined) {
+    //&& workmode === 'all'
     if (changeInfo !== undefined && changeInfo.status === "complete") {
-      verify(tab.url,tab);
+      if (tab.url.indexOf("chrome_ex_oauth.html") < 0 && tab.url.indexOf("evernote.com")<0 && tab.url.indexOf("chrome://extensions/")<0){
+        verify(tab.url,tab);
+      }
     }
   } else {
   //  chrome.browserAction.setBadgeText({text: ''});
@@ -11,13 +14,19 @@ function onUpdated(workmode, changeInfo, tab) {
 }
 
 function onActivated(workmode, activeInfo) {
-  if (workmode && workmode !== undefined && workmode === 'all') {
+  //
+  if (workmode && workmode !== undefined ) {
     chrome.tabs.query({active: true}, function(tab){
       if (tab !== undefined ) {
         // do this to get the correct tab (the user may have detached tabs)
         for (var i = tab.length - 1; i >= 0; i--) {
           if (tab[i].id === activeInfo.tabId) {
-            verify(tab[i].url, tab[i]);
+            if (tab[i].url.indexOf("chrome_ex_oauth.html") < 0 && tab[i].url.indexOf("evernote.com")<0 && tab[i].url.indexOf("chrome://extensions/")<0){
+            //  window.alert('EB B' + tab[i].url );
+                verify(tab[i].url, tab[i]);
+            }
+
+
           }
         }
       }
@@ -69,6 +78,7 @@ var url_cache = {};
 // URL VERIFICATION
 // -----------------------------------------------------------------------------
 function verify(url, tab) {
+
 //
   use_cached=false;
 
