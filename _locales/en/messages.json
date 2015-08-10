@@ -3,13 +3,13 @@
         "message":"${version}"
     },
     "name":{
-        "message":"EVERDU - EVERnote DUplicated"
+        "message":"Evernote - Already there ?"
     },
     "description":{
-        "message":"Chrome extension that checks whether you have this url in your notes or not"
+        "message":"Shows an icon on your address bar if page already has notes on Evernote"
     },
     "title":{
-        "message":"EVERDU - EVERnote DUplicated"
+        "message":"Evernote - Already there ?"
     },
     "loginTitle":{
         "message":""
