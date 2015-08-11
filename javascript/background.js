@@ -57,17 +57,34 @@ function showicon(tab, notes){
 
   var tabId = tab.id;
 
-  	var title = "bla"
-  	chrome.pageAction.setTitle({tabId: tabId, title: title});
+
+
+//  	var title = "Evernote notes"
+//  	chrome.pageAction.setTitle({tabId: tabId, title: title});
 
   	chrome.pageAction.setIcon({
   		tabId: tabId,
       path:"../images/Evernote-off.png"
   	});
 
-  	var popup = 'popup.html#' + encodeURIComponent(JSON.stringify(notes))
-  	chrome.pageAction.setPopup({tabId: tabId, popup: popup})
+    //window.alert('EB B' +tab.url);
 
+    var notesproc = []
+    for(var k in notes) {
+      var obj = {created: notes[k].created, guid: notes[k].guid, title: notes[k].title};
+      notesproc.push(obj);
+    //  notesproc[k].created=notes[k].created;
+  //    notesproc[k].name=notes[k].name;
+    //  notesproc[k].title=notes[k].title;
+    }
+
+//    window.alert('EB B' +tab.url);
+  	var popup = 'popup.html#' + encodeURIComponent(JSON.stringify(notesproc))
+
+
+
+  	chrome.pageAction.setPopup({tabId: tabId, popup: popup})
+//window.alert('EB B' +tab.url);
   	chrome.pageAction.show(tabId);
 
 
@@ -116,7 +133,6 @@ function verify(url, tab) {
 
       //  chrome.browserAction.setBadgeText({text: 'no'});
       } else {
-        //  window.alert('EB B' + totalNotes);
         showicon(tab,notes)
         //chrome.browserAction.setBadgeText({text: 'yes:' + totalNotes});
 
