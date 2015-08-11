@@ -6,3 +6,5 @@ Based on :
 
 This Chrome extension shows an icon on your address bar if page already has notes on Evernote.
 By clicking on that icon you can see a list of the said notes with the associated links.
+
+Extension available at the [Chrome Web Store](https://chrome.google.com/webstore/detail/evernote-already-there/iidpfiphaljkpnbhmkamheklfpgbmheg)
