@@ -71,20 +71,17 @@ function showicon(tab, notes){
 
     var notesproc = []
     for(var k in notes) {
-      var obj = {created: notes[k].created, guid: notes[k].guid, title: notes[k].title};
-      notesproc.push(obj);
-    //  notesproc[k].created=notes[k].created;
-  //    notesproc[k].name=notes[k].name;
-    //  notesproc[k].title=notes[k].title;
+      if (notes.hasOwnProperty) {
+        var obj = {created: notes[k].created, guid: notes[k].guid, title: notes[k].title};
+        notesproc.push(obj);
+      }
     }
 
-//    window.alert('EB B' +tab.url);
   	var popup = 'popup.html#' + encodeURIComponent(JSON.stringify(notesproc))
 
 
 
   	chrome.pageAction.setPopup({tabId: tabId, popup: popup})
-//window.alert('EB B' +tab.url);
   	chrome.pageAction.show(tabId);
 
 
