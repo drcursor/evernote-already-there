@@ -1,7 +1,7 @@
 {
   "name"          : "Evernote - Already there ?",
   "description"   : "Shows an icon on your address bar if page already has notes on Evernote",
-  "version"       : "2.0.0",
+  "version"       : "2.0.2",
   "default_locale": "en",
   "page_action": {
     "default_icon" : "images/Evernote-off.png",
